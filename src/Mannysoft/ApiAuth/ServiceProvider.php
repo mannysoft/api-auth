@@ -14,6 +14,11 @@ class ServiceProvider extends BaseServiceProvider {
      */
     public function boot()
     {
+        $this->publishes([
+                __DIR__.'/config/api-auth.php' => config_path('api-auth.php'),
+            ], 'config');
+
+
         Passport::routes();
 
         Passport::tokensCan([
