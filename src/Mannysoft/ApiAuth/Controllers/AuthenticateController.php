@@ -12,14 +12,10 @@ use GuzzleHttp\Client;
  */
 class AuthenticateController extends Controller
 {
-    protected $username = 'username';
 
     public function authenticate(Request $request)
     {
-        if (auth()->attempt(['email' => request('username'), 'password' => request('password')])) {
-
-            return $this->getToken(request('username'), request('password'));
-        }
+        return $this->getToken(request(config('api-auth.username')), request('password'));
 
         return response()->json(['message' => 'Invalid Email or Password.'], 401);
     }
