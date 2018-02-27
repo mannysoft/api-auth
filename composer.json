@@ -39,7 +39,7 @@
             "@php artisan migrate",
             "@php artisan passport:install",
             "@php artisan passport:keys",
-            "@php artisan passport:client --password",
+            "@php artisan passport:client --password"
         ]
     },
     "minimum-stability": "dev"
