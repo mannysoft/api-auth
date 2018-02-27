@@ -1,0 +1,46 @@
+{
+    "name": "mannysoft/api-auth",
+    "description": "Laravel package for extending Laravel Passport",
+    "keywords": [
+        "laravel",
+        "api",
+        "auth"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Manny Isles"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/passport": "^5.0",
+    },
+    "autoload": {
+        "psr-0": {
+            "Mannysoft\\ApiAuth\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mannysoft\\ApiAuth\\ServiceProvider"
+            ],
+            "aliases": {
+                "ApiAuth": "Mannysoft\\ApiAuth\\Facade"
+            }
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan migrate",
+            "@php artisan passport:install",
+            "@php artisan passport:keys",
+            "@php artisan passport:client --password",
+        ]
+    },
+    "minimum-stability": "dev"
+}
