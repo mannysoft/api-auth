@@ -51,7 +51,7 @@ class User extends Authenticatable
 ```
 
 
-Update your config/services.php
+Update your config/services.php if you are using login with facebook
 
 
 ```php
@@ -62,6 +62,7 @@ Update your config/services.php
 ],
 ```
 
+Update your config/api-auth.php depending in your needs
 
 Finally, in your config/auth.php configuration file, you should set the driver option of the  api authentication guard to passport. This will instruct your application to use Passport's  TokenGuard when authenticating incoming API requests:
 

@@ -13,11 +13,6 @@ return [
         'client_secret' => env('APP_OAUTH_CLIENT_SECRET', 'HEKKXk9gAX0GgLQBBKYPgh9kEjDrNCJNwBtgeA9W'),
         'scope' => env('SCOPE', 'show'),
     ],
-	'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID', ''),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET', ''),
-        'redirect' => env('FACEBOOK_REDIRECT', ''),
-    ],
     'accountkit' => [
         'client_id' => env('ACCOUNT_KIT_APP_ID', ''),
         'client_secret' => env('ACCOUNT_KIT_APP_SECRET', ''),
