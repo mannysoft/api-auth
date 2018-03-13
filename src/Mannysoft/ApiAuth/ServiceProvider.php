@@ -18,6 +18,10 @@ class ServiceProvider extends BaseServiceProvider {
                 __DIR__.'/config/api-auth.php' => config_path('api-auth.php'),
             ], 'config');
 
+        $timestamp = date('Y_m_d_His', time());
+        $this->publishes([
+            __DIR__.'/database/migrations/update_users_tables.php.stub' => $this->app->databasePath()."/migrations/{$timestamp}_update_users_tables.php",
+        ], 'migrations');
 
         Passport::routes();
 
