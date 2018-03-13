@@ -51,7 +51,7 @@ class User extends Authenticatable
 ```
 
 
-Update you config/services.php
+Update your config/services.php
 
 
 ```php
