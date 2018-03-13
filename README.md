@@ -51,6 +51,18 @@ class User extends Authenticatable
 ```
 
 
+Update you config/services.php
+
+
+```php
+'facebook' => [
+    'client_id' => env('FACEBOOK_CLIENT_ID'),
+    'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+    'redirect' => env('FACEBOOK_REDIRECT'),
+],
+```
+
+
 Finally, in your config/auth.php configuration file, you should set the driver option of the  api authentication guard to passport. This will instruct your application to use Passport's  TokenGuard when authenticating incoming API requests:
 
 
