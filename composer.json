@@ -39,8 +39,7 @@
         "post-autoload-dump": [
             "@php artisan migrate",
             "@php artisan passport:install",
-            "@php artisan passport:keys",
-            "@php artisan passport:client --password"
+            "@php artisan passport:keys"
         ]
     },
     "minimum-stability": "dev"
