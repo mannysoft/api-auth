@@ -121,6 +121,8 @@ class AuthenticateController extends Controller
             $token->revoked = true;
             $token->save();
         }
+
+        return response()->json(null, 200);
  
         return $request->user()->tokens;
     }
