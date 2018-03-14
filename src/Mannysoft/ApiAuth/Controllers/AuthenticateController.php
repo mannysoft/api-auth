@@ -11,6 +11,7 @@ use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7;
 use Socialite;
 use Mannysoft\ApiAuth\User;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 /**
  * @resource Authentication
@@ -19,6 +20,8 @@ use Mannysoft\ApiAuth\User;
  */
 class AuthenticateController extends Controller
 {
+    use SendsPasswordResetEmails;
+    
     /**
      * $appId
      * @var [int]

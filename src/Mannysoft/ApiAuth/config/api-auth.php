@@ -5,6 +5,7 @@ return [
 	'login_accountkit' => 'api/v1/login/facebook/accountkit',
 	'login_url' => 'api/v1/login',
 	'logout_url' => 'api/v1/logout',
+    'forgot_password' => 'api/v1/password/email',
 	'username' => 'email', // email or username
 
 	'app_oauth' => [
