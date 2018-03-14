@@ -21,7 +21,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 class AuthenticateController extends Controller
 {
     use SendsPasswordResetEmails;
-    
+
     /**
      * $appId
      * @var [int]
@@ -195,6 +195,24 @@ class AuthenticateController extends Controller
         $phone = isset($data->phone) ? $data->phone->number : '';
 
         $email = isset($data->email) ? $data->email->address : '';
+    }
+
+    public function sendResetPasswordEmail(Request $request)
+    {
+        $this->validateEmail($request);
+
+        $response = $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        // Check Illuminate\Support\Facades\Password
+        if ($response == 'passwords.user') {
+            return response()->json(['status' => 'failed', 'message' => 'Email could not be found.'], 404);
+        }
+
+        $this->sendResetLinkResponse($response);
+
+        return response()->json(['status' => 'success', 'message' => 'Email sent.'], 200);
     }
 
 }
