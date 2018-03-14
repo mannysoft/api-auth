@@ -92,6 +92,6 @@ To get started, override the sendPasswordResetNotification method on your User m
  */
 public function sendPasswordResetNotification($token)
 {
-    $this->notify(new \Mannysoft\ApiAuth\Notifications\ResetPasswordNotification($token));
+    $this->notify(new \Mannysoft\ApiAuth\Notifications\ResetPasswordNotification($token, $this->email));
 }
 ```

@@ -17,6 +17,7 @@ class ResetPasswordNotification extends Notification
      * @var string
      */
     public $token;
+    public $email;
     
     /**
      * Create a notification instance.
@@ -24,9 +25,10 @@ class ResetPasswordNotification extends Notification
      * @param  string  $token
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $email)
     {
         $this->token = $token;
+        $this->email = $email;
     }
 
     /**
@@ -51,7 +53,7 @@ class ResetPasswordNotification extends Notification
         return (new MailMessage)
             ->line('You are receiving this email because we received a password reset request for your account.')
             // ->action('Reset Password', url(config('app.url').route('password.reset', $this->token, false)))
-            ->action('Reset Password', url(config('app.url').route('password.reset', $this->token, false)))
+            ->action('Reset Password', config('api-auth.reset_password_deep_link').$this->token . '&email=' . $this->email)
             ->line('If you did not request a password reset, no further action is required.');
     }
 

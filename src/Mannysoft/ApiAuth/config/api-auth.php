@@ -8,6 +8,7 @@ return [
     'forgot_password' => 'api/v1/password/email',
     'change_password' => 'api/v1/password/change',
 	'username' => 'email', // email or username
+    'reset_password_deep_link' => '',
 
 	'app_oauth' => [
         'grant_type' => env('APP_OAUTH_GRANT_TYPE', 'password'),
