@@ -20,19 +20,21 @@ php artisan passport:keys
 ```shell
 php artisan vendor:publish --provider="Mannysoft\ApiAuth\ServiceProvider"
 ```
-
-Open your oauth_clients table and look for password_client
+```shell
+php artisan vendor:publish --provider="Mannysoft\ApiAuth\ServiceProvider" --tag="migrations"
+```
+Open your `oauth_clients` table and look for `password_client`
 
 Change your .env
 
-APP_OAUTH_CLIENT_ID=
+`APP_OAUTH_CLIENT_ID=`
 
-APP_OAUTH_CLIENT_SECRET=
+`APP_OAUTH_CLIENT_SECRET=`
 
-Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the `ServiceProvider`.
 
 
-add the Laravel\Passport\HasApiTokens trait to your App\User model. This trait will provide a few helper methods to your model which allow you to inspect the authenticated user's token and scopes:
+add the `Laravel\Passport\HasApiTokens` trait to your `App\User` model. This trait will provide a few helper methods to your model which allow you to inspect the authenticated user's token and scopes:
 
 
 ```php
@@ -51,7 +53,7 @@ class User extends Authenticatable
 ```
 
 
-Update your config/services.php if you are using login with facebook
+Update your `config/services.php` if you are using login with facebook
 
 
 ```php
@@ -62,9 +64,9 @@ Update your config/services.php if you are using login with facebook
 ],
 ```
 
-Update your config/api-auth.php depending in your needs
+Update your `config/api-auth.php` depending in your needs
 
-Finally, in your config/auth.php configuration file, you should set the driver option of the  api authentication guard to passport. This will instruct your application to use Passport's  TokenGuard when authenticating incoming API requests:
+Finally, in your `config/auth.php` configuration file, you should set the driver option of the  api authentication guard to passport. This will instruct your application to use Passport's  TokenGuard when authenticating incoming API requests:
 
 
 ```php
@@ -81,7 +83,7 @@ Finally, in your config/auth.php configuration file, you should set the driver o
 ],
 ```
 ## Reset Password Email
-To get started, override the sendPasswordResetNotification method on your User model. Within this method, you may send the notification using any notification class you choose. The password reset $token is the first argument received by the method:
+To get started, override the `sendPasswordResetNotification` method on your `User` model. Within this method, you may send the notification using any notification class you choose. The password reset `$token` is the first argument received by the method:
 
 ```php
 /**
@@ -95,3 +97,24 @@ public function sendPasswordResetNotification($token)
     $this->notify(new \Mannysoft\ApiAuth\Notifications\ResetPasswordNotification($token, $this->email));
 }
 ```
+## Routes available
+| Route        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+|       		|  				| 	 		|
+|       		|       		|   	 	|
+| 				|       		|     		|
+
+## Configuration
+
+| Config        | Value           | Default  |
+| ------------- |:-------------:| -----:|
+| login_facebook      |  |  |
+| login_accountkit      |       |    |
+| login_url |       |     |
+| logout_url      |  |  |
+| forgot_password      |       |    |
+| change_password |       |     |
+| username      |       |    |
+| reset_password_deep_link |       |     |
+
+
