@@ -6,6 +6,7 @@ return [
 	'login_url' => 'api/v1/login',
 	'logout_url' => 'api/v1/logout',
     'forgot_password' => 'api/v1/password/email',
+    'change_password' => 'api/v1/password/change',
 	'username' => 'email', // email or username
 
 	'app_oauth' => [

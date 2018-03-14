@@ -11,16 +11,17 @@ use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7;
 use Socialite;
 use Mannysoft\ApiAuth\User;
+use Mannysoft\ApiAuth\Traits\Token;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
-/**
- * @resource Authentication
- *
- * Auth
- */
+
+use Illuminate\Support\Facades\Password;
+
 class AuthenticateController extends Controller
 {
     use SendsPasswordResetEmails;
+    use Token;
 
     /**
      * $appId
@@ -130,38 +131,6 @@ class AuthenticateController extends Controller
         return $request->user()->tokens;
     }
 
-    // Return the token
-    public function getToken($email, $password)
-    {
-        $http = new Client;
-        try {
-            $response = $http->post(request()->root() .'/oauth/token', [
-                'form_params' => [
-                    'grant_type' => config('api-auth.app_oauth.grant_type'),
-                    'client_id' => config('api-auth.app_oauth.client_id'),
-                    'client_secret' => config('api-auth.app_oauth.client_secret'),
-                    'username' => $email,
-                    'password' => $password,
-                    //'scope' => config('api-auth.app_oauth.scope'),
-                    'scope' => '*'
-                ],
-            ]);
-
-            return json_decode($response->getBody(), true);
-
-        } catch (RequestException $e) {
-            // $this->errorMessage = Psr7\str($e->getResponse());
-            // $statusCode = $e->getResponse()->getStatusCode();
-            // $this->body = $e->getResponse()->getBody();
-            //dd(Psr7\str($e->getResponse()));
-
-        } catch (ClientException $e) {
-            //dd(1);
-        }
-
-        return response()->json(['message' => 'Invalid Email or Password.'], 401);
-    }
-
     public function accountKit(Request $request)
     {
         // we require access token here to get the user details
@@ -205,14 +174,12 @@ class AuthenticateController extends Controller
             $request->only('email')
         );
 
-        // Check Illuminate\Support\Facades\Password
-        if ($response == 'passwords.user') {
-            return response()->json(['status' => 'failed', 'message' => 'Email could not be found.'], 404);
+        if ($response == Password::RESET_LINK_SENT) {
+            return response()->json(['status' => 'success', 'message' => trans($response)], 200);
         }
 
-        $this->sendResetLinkResponse($response);
-
-        return response()->json(['status' => 'success', 'message' => 'Email sent.'], 200);
+        return response()->json(['status' => 'failed', 'message' => trans($response)], 400);
+        
     }
 
 }

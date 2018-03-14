@@ -1,5 +1,5 @@
-# API Auth Request
-Laravel package for extending Laravel Passport.
+# Laravel API Authentication
+Laravel package for authentication in API.
 
 ## Installation
 
@@ -80,4 +80,18 @@ Finally, in your config/auth.php configuration file, you should set the driver o
     ],
 ],
 ```
-## Usage
+## Reset Password Email
+To get started, override the sendPasswordResetNotification method on your User model. Within this method, you may send the notification using any notification class you choose. The password reset $token is the first argument received by the method:
+
+```php
+/**
+ * Send the password reset notification.
+ *
+ * @param  string  $token
+ * @return void
+ */
+public function sendPasswordResetNotification($token)
+{
+    $this->notify(new \Mannysoft\ApiAuth\Notifications\ResetPasswordNotification($token));
+}
+```

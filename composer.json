@@ -15,7 +15,8 @@
     "require": {
         "php": ">=7.0.0",
         "laravel/passport": "^5.0",
-        "laravel/socialite": "^3.0"
+        "laravel/socialite": "^3.0",
+        "mannysoft/api-form-request": "dev-master"
     },
     "autoload": {
         "psr-0": {
