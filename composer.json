@@ -16,6 +16,7 @@
         "php": ">=7.0.0",
         "laravel/passport": "^5.0",
         "laravel/socialite": "^3.0",
+        "tymon/jwt-auth": "^1.0.0-rc.2",
         "mannysoft/api-form-request": "dev-master"
     },
     "autoload": {
