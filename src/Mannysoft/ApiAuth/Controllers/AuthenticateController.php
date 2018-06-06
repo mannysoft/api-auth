@@ -78,18 +78,7 @@ class AuthenticateController extends Controller
       $data['password'] = bcrypt(request('password'));
       $data['name'] = '';
       User::create($data);
-        if (config('api-auth.auth') == 'jwt') {
-            $credentials = request(['email', 'password']);
-
-            if (! $token = auth()->attempt($credentials)) {
-                return response()->json(['message' => 'Invalid Email or Password.'], 401);
-            }
-
-            return $this->respondWithToken($token);
-        }
-
-        // passport
-        return $this->getToken(request(config('api-auth.username')), request('password'));
+      return $this->authenticate($request);
     }
 
     public function authenticate(Request $request)
