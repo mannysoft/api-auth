@@ -12,6 +12,7 @@ use GuzzleHttp\Psr7;
 use Socialite;
 use App\User;
 use Mannysoft\ApiAuth\Traits\Token;
+use Mannysoft\ApiAuth\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -69,6 +70,26 @@ class AuthenticateController extends Controller
       $this->appSecret        = config('accountkit.app_secret');
       $this->endPointUrl      = config('accountkit.end_point');
       $this->tokenExchangeUrl = config('accountkit.tokenExchangeUrl');
+    }
+
+    public function register(RegisterRequest $request)
+    {
+      $data = request()->all();
+      $data['password'] = bcrypt(request('password'));
+      $data['name'] = '';
+      User::create($data);
+        if (config('api-auth.auth') == 'jwt') {
+            $credentials = request(['email', 'password']);
+
+            if (! $token = auth()->attempt($credentials)) {
+                return response()->json(['message' => 'Invalid Email or Password.'], 401);
+            }
+
+            return $this->respondWithToken($token);
+        }
+
+        // passport
+        return $this->getToken(request(config('api-auth.username')), request('password'));
     }
 
     public function authenticate(Request $request)
