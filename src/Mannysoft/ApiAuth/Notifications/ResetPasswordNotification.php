@@ -52,8 +52,8 @@ class ResetPasswordNotification extends Notification
     {
         return (new MailMessage)
             ->line('You are receiving this email because we received a password reset request for your account.')
-            // ->action('Reset Password', url(config('app.url').route('password.reset', $this->token, false)))
-            ->action('Reset Password', config('api-auth.reset_password_deep_link').$this->token . '&email=' . $this->email)
+            ->action('Reset Password', url(config('app.url').route('password.reset', $this->token, false)))
+            //->action('Reset Password', config('api-auth.reset_password_deep_link').$this->token . '&email=' . $this->email)
             ->line('If you did not request a password reset, no further action is required.');
     }
 
