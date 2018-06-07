@@ -65,6 +65,7 @@ class AuthenticateController extends Controller
     */
     public function __construct()
     {
+      config(['auth.defaults.guard' => 'api']);
       $this->appId            = config('accountkit.app_id');
       $this->client           = new Client();
       $this->appSecret        = config('accountkit.app_secret');
