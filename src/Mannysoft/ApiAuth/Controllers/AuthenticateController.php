@@ -167,6 +167,8 @@ class AuthenticateController extends Controller
             // Save and login the user           
             $user->fb_image_url = $fb->getAvatar();
             $user->password = bcrypt($password);
+            $user->first_name = request('first_name');
+            $user->last_name = request('last_name');
             $user->save();
 
             ///return $this->getToken($user->email, $password);
@@ -178,6 +180,8 @@ class AuthenticateController extends Controller
         $user = new User;
         $user->name = $fb->getName();
         $user->email = $fb->getEmail();
+        $user->first_name = request('first_name');
+        $user->last_name = request('last_name');
         //$user->username = $fb->getEmail();
         $user->fb_id = $fb->getId();
         $user->password = bcrypt($password);
