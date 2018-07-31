@@ -161,6 +161,10 @@ class AuthenticateController extends Controller
 
         $user = User::where('fb_id', $fb->getId())->first();
 
+        if ($fb->getEmail()) {
+          $user = User::where('email', $fb->getEmail())->first();
+        }
+
         $password = str_random(8);
 
         if ($user) {
