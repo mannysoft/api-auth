@@ -169,7 +169,10 @@ class AuthenticateController extends Controller
             $user->password = bcrypt($password);
             $user->save();
 
-            return $this->getToken($user->email, $password);
+            ///return $this->getToken($user->email, $password);
+            $request->request->add(['password' => $password]);
+
+            return $this->authenticate($request);
         }
 
         $user = new User;
@@ -180,6 +183,10 @@ class AuthenticateController extends Controller
         $user->password = bcrypt($password);
         $user->fb_image_url = $fb->getAvatar();
         $user->save();
+
+        $request->request->add(['password' => $password]);
+
+        return $this->authenticate($request);
 
         $data = $this->getToken($fb->getEmail(), $password);
 
