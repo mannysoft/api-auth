@@ -90,6 +90,10 @@ class AuthenticateController extends Controller
             if (! $token = auth()->attempt($credentials)) {
                 return response()->json(['message' => 'Invalid Email or Password.'], 401);
             }
+            
+            if (function_exists('storeActivity')) {
+                storeActivity('user', 'User Login', 'Logged In');
+            }
 
             return $this->respondWithToken($token);
         }
