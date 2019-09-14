@@ -13,10 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
-        "laravel/passport": "^5.0",
-        "laravel/socialite": "^3.0",
-        "tymon/jwt-auth": "^1.0.0-rc.2",
+        "php": ">=7.2.0",
+        "laravel/passport": "^7.4",
+        "laravel/socialite": "^4.2",
+        "tymon/jwt-auth": "^1.0.0-rc.5",
         "mannysoft/api-form-request": "dev-master"
     },
     "autoload": {
