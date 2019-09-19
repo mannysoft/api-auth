@@ -17,7 +17,7 @@
         "laravel/passport": "^7.4",
         "laravel/socialite": "^4.2",
         "tymon/jwt-auth": "^1.0.0-rc.5",
-        "mannysoft/api-form-request": "dev-develop"
+        "mannysoft/api-form-request": "^0.2"
     },
     "autoload": {
         "psr-0": {
