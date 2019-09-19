@@ -18,9 +18,6 @@ php artisan passport:install
 php artisan passport:keys
 ```
 ```shell
-php artisan vendor:publish --provider="Mannysoft\ApiAuth\ServiceProvider"
-```
-```shell
 php artisan vendor:publish --provider="Mannysoft\ApiAuth\ServiceProvider" --tag="migrations"
 ```
 Open your `oauth_clients` table and look for `password_client`
