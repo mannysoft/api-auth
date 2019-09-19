@@ -16,7 +16,6 @@ class ApiAuth {
     public function handle($request, Closure $next)
     {
         if (auth()->user() == null) {
-            // return response()->json(auth()->user());
             return response(['status' => 'failed', 'message' => 'Unauthorized.'], 401);
         }
         

@@ -114,18 +114,6 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function logout1()
-    {
-        auth()->logout();
-
-        return response()->json(['message' => 'Successfully logged out']);
-    }
-
-    /**
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
@@ -150,10 +138,6 @@ class AuthenticateController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
-
-
-
-
 
     public function loginFacebook(Request $request)
     {
