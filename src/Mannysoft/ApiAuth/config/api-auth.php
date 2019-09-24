@@ -21,4 +21,6 @@ return [
         'client_id' => env('ACCOUNT_KIT_APP_ID', ''),
         'client_secret' => env('ACCOUNT_KIT_APP_SECRET', ''),
     ],
+	
+    'auth_url' => env('AUTH_URL'),
 ];
