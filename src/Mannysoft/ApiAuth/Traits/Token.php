@@ -23,8 +23,9 @@ Trait Token
     public function getToken($email, $password)
     {
         $http = new Client;
+        $authUrl = config('api-auth.auth_url') ?? request()->root();
         try {
-            $response = $http->post(request()->root() .'/oauth/token', [
+            $response = $http->post($authUrl .'/oauth/token', [
                 'form_params' => [
                     'grant_type' => config('api-auth.app_oauth.grant_type'),
                     'client_id' => config('api-auth.app_oauth.client_id'),
@@ -39,13 +40,16 @@ Trait Token
             return json_decode($response->getBody(), true);
 
         } catch (RequestException $e) {
-            // $this->errorMessage = Psr7\str($e->getResponse());
-            // $statusCode = $e->getResponse()->getStatusCode();
-            // $this->body = $e->getResponse()->getBody();
-            //dd(Psr7\str($e->getResponse()));
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                if ($response->getStatusCode() == 401) {
+                    $data = json_decode($response->getBody()->getContents(), true);
 
+                    return response()->json($data, $response->getStatusCode());
+                }
+            }
         } catch (ClientException $e) {
-            //dd(1);
+            
         }
 
         return response()->json(['message' => 'Invalid Email or Password.'], 401);
