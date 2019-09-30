@@ -205,8 +205,6 @@ class AuthenticateController extends Controller
         }
 
         return response()->json(null, 200);
- 
-        return $request->user()->tokens;
     }
 
     public function accountKit(Request $request)
