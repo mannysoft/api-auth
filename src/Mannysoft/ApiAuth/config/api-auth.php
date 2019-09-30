@@ -4,6 +4,7 @@ return [
 	'auth' => env('APP_AUTH_TYPE', 'jwt'), // jwt or passport
     	'login_facebook' => 'api/v1/login/facebook',
 	'login_accountkit' => 'api/v1/login/facebook/accountkit',
+	'register' => 'api/v1/register',
 	'login_url' => 'api/v1/login',
 	'logout_url' => 'api/v1/logout',
     	'forgot_password' => 'api/v1/password/email',
