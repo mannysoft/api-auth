@@ -24,5 +24,12 @@ return [
         'client_secret' => env('ACCOUNT_KIT_APP_SECRET', ''),
     ],
 	
+    'register_validation' => [
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6',
+    ],
+	
     'auth_url' => env('AUTH_URL'),
 ];
