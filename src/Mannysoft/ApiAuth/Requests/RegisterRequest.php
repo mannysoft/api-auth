@@ -27,6 +27,10 @@ class RegisterRequest extends ApiFormRequest
      */
     public function rules()
     {
+        if (config('api-auth.register_validation')) {
+            return config('api-auth.register_validation');
+        }
+        
         return [
             'first_name' => 'required',
             'last_name' => 'required',
