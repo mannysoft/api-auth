@@ -23,7 +23,7 @@ Trait Token
     public function getToken($email, $password)
     {
         $http = new Client;
-        $authUrl = config('api-auth.auth_url') ?? request()->root();
+        $authUrl = config('app.url') ?? request()->root();
         try {
             $response = $http->post($authUrl .'/oauth/token', [
                 'form_params' => [
@@ -35,6 +35,7 @@ Trait Token
                     //'scope' => config('api-auth.app_oauth.scope'),
                     'scope' => '*'
                 ],
+                'verify' => false
             ]);
 
             return json_decode($response->getBody(), true);
